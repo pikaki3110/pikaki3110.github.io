@@ -1,162 +1,292 @@
 <!DOCTYPE html>
-<!-- oss-template-2026:placeholder （この目印で，scripts/check.sh が「準備中」のページかどうかを見分けます） -->
-<!--
-  テンプレートの「準備中」のページです．
-  このページが https://ユーザー名.github.io/ に表示されたら，GitHub Pages の設定は成功です．
-  第7回の実習4で，このファイルを第6回で作った index.html に置きかえます．
--->
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>準備中</title>
-  <style>
-    /* ===== 色の設定 ===== */
-    :root {
-      --main-color: #2e7d32;  /* メインの色（見出し・番号） */
-      --bg-color: #f5f8f5;    /* ページの背景の色 */
-      --card-color: #ffffff;  /* カードの背景の色 */
-      --text-color: #222222;  /* 文字の色 */
-      --sub-color: #666666;   /* 補足の文字の色 */
-      --line-color: #dfe6df;  /* 区切り線の色 */
-    }
+    <!-- 文字コードをUTF-8に設定 -->
+    <meta charset="UTF-8">
 
-    /* パソコンやスマートフォンがダークモードのときの色 */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --main-color: #81c784;
-        --bg-color: #121512;
-        --card-color: #1e231e;
-        --text-color: #e8ece8;
-        --sub-color: #a0a8a0;
-        --line-color: #2f362f;
-      }
-    }
+    <!-- スマートフォンでも画面サイズに合わせて表示する設定 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    /* ページ全体：カードを画面のまんなかに置く */
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 16px;
-      box-sizing: border-box;
-      font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
-      line-height: 1.8;
-      color: var(--text-color);
-      background: var(--bg-color);
-    }
+    <!-- サイトのタイトル -->
+    <title>かきぴー | Portfolio</title>
 
-    /* まんなかのカード */
-    main {
-      width: 100%;
-      max-width: 600px;
-      padding: 32px 28px;
-      background: var(--card-color);
-      border-top: 6px solid var(--main-color);
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    }
+    <style>
+        /* ページ全体の基本設定 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    h1 {
-      margin: 0 0 4px;
-      font-size: clamp(1.3rem, 6vw, 1.6rem);  /* スマートフォンでは少し小さくする */
-      line-height: 1.4;
-      color: var(--main-color);
-    }
+        /* ページ全体の色や文字の設定 */
+        body {
+            font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+            background-color: #f3fbf8;
+            color: #405b57;
+            line-height: 1.8;
+        }
 
-    h2 {
-      margin: 28px 0 8px;
-      padding-bottom: 4px;
-      font-size: 1.05rem;
-      border-bottom: 1px solid var(--line-color);
-    }
+        /* ヘッダー部分の設定 */
+        header {
+            background-color: #d9f1e7;
+            padding: 20px;
+            text-align: center;
+        }
 
-    /* 「設定は成功」のバッジ */
-    .badge {
-      display: inline-block;
-      margin: 8px 0 0;
-      padding: 2px 12px;
-      font-size: 0.9rem;
-      font-weight: bold;
-      color: var(--card-color);
-      background: var(--main-color);
-      border-radius: 999px;
-    }
+        /* サイト名のデザイン */
+        header h1 {
+            color: #4b9b82;
+            font-size: 28px;
+            letter-spacing: 2px;
+        }
 
-    /* 「次にやること」の番号つきリスト */
-    ol {
-      margin: 0;
-      padding-left: 1.4em;
-    }
-    li {
-      margin-bottom: 6px;
-    }
-    li::marker {
-      font-weight: bold;
-      color: var(--main-color);
-    }
+        /* ナビゲーションメニューの設定 */
+        nav {
+            margin-top: 12px;
+        }
 
-    /* コマンドの見た目 */
-    code {
-      padding: 1px 6px;
-      font-family: "SFMono-Regular", Consolas, monospace;
-      font-size: 0.88em;
-      background: var(--bg-color);
-      border-radius: 4px;
-      white-space: nowrap;  /* コマンドの途中で折り返さない */
-    }
+        nav a {
+            color: #527f8b;
+            text-decoration: none;
+            margin: 0 12px;
+            font-size: 14px;
+        }
 
-    /* 補足の小さな文字 */
-    .sub {
-      font-size: 0.9rem;
-      color: var(--sub-color);
-    }
+        /* ナビゲーションにカーソルを合わせたときの設定 */
+        nav a:hover {
+            color: #70bca5;
+        }
 
-    /* いちばん下の小さな文字 */
-    footer {
-      margin-top: 28px;
-      padding-top: 12px;
-      font-size: 0.8rem;
-      color: var(--sub-color);
-      border-top: 1px solid var(--line-color);
-    }
-    a {
-      color: var(--main-color);
-    }
-  </style>
+        /* メインビジュアル部分の設定 */
+        .hero {
+            text-align: center;
+            padding: 70px 20px;
+            background: linear-gradient(135deg, #e0f5ed, #e1f4fb);
+        }
+
+        /* メイン見出しのデザイン */
+        .hero h2 {
+            font-size: 32px;
+            color: #4b9b82;
+            margin-bottom: 15px;
+        }
+
+        /* キャッチコピーのデザイン */
+        .hero p {
+            font-size: 17px;
+            color: #648b91;
+        }
+
+        /* 各セクションの共通設定 */
+        section {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 30px;
+        }
+
+        /* セクション見出しのデザイン */
+        section h2 {
+            color: #4b9b82;
+            font-size: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #cce9df;
+        }
+
+        /* プロフィールカードのデザイン */
+        .profile-card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(100, 160, 140, 0.08);
+        }
+
+        /* プロフィール情報の設定 */
+        .profile-card p {
+            margin-bottom: 10px;
+        }
+
+        /* 情報ラベルの色 */
+        .label {
+            color: #70a99a;
+            font-weight: bold;
+        }
+
+        /* 趣味などのカードを並べる設定 */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        /* 各カードのデザイン */
+        .card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(100, 160, 140, 0.08);
+        }
+
+        /* カードの見出し */
+        .card h3 {
+            color: #5aa58e;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        /* 学習内容のリスト設定 */
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* ひとこと部分のデザイン */
+        .message {
+            text-align: center;
+            background-color: #e1f4fb;
+            border-radius: 20px;
+            padding: 35px 20px;
+        }
+
+        .message p {
+            color: #5c9aaa;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* フッター部分の設定 */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #d9f1e7;
+            color: #719b91;
+            font-size: 13px;
+        }
+
+        /* スマートフォン向けのレイアウト設定 */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 24px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px 8px;
+            }
+
+            .hero {
+                padding: 50px 15px;
+            }
+
+            .hero h2 {
+                font-size: 26px;
+            }
+
+            section {
+                margin: 20px 15px;
+                padding: 20px;
+            }
+
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <main>
-    <h1>このサイトは準備中です</h1>
-    <p class="badge">GitHub Pages の設定 OK</p>
-    <p>このページが表示されていれば，あなたのリポジトリは正しく公開されています．
-      あとは，このページを自分のサイトに置きかえるだけです．</p>
 
-    <h2>次にやること</h2>
-    <ol>
-      <li>このリポジトリを，SSHのURLで <code>git clone</code> する</li>
-      <li><code>index.html</code> を，第6回で作ったサイトに置きかえる</li>
-      <li><code>bash scripts/check.sh</code> で，公開前のチェックをする</li>
-      <li><code>git add</code> → <code>git commit</code> → <code>git push origin main</code> する</li>
-      <li>数分待ってから，このページを再読み込みする</li>
-    </ol>
-    <p class="sub">再読み込みしても変わらないときは，強制再読み込み（Windows：Ctrl + F5，Mac：Command + Shift + R）を試しましょう．</p>
+    <!-- サイト上部のヘッダー -->
+    <header>
+        <h1>かきぴー's Portfolio</h1>
 
-    <h2>公開する前に</h2>
-    <ul>
-      <li>本名のフルネーム・学籍番号・住所・電話番号・メールアドレスが入っていないか</li>
-      <li>自己紹介に書いていないことを，AIが付け足していないか</li>
-    </ul>
-    <p class="sub">このリポジトリは Public です．サイトだけでなく，ファイルの中身やコミットの履歴も，誰でも見ることができます．</p>
+        <!-- ページ内の各セクションへ移動するナビゲーション -->
+        <nav>
+            <a href="#profile">Profile</a>
+            <a href="#hobby">Hobby</a>
+            <a href="#programming">Programming</a>
+            <a href="#learning">Learning</a>
+        </nav>
+    </header>
 
+    <!-- サイトのメインビジュアル -->
+    <div class="hero">
+        <h2>Welcome to my portfolio!</h2>
+        <p>最近お菓子作りにハマっています 🍪</p>
+    </div>
+
+    <!-- 基本プロフィールのセクション -->
+    <section id="profile">
+        <h2>Profile</h2>
+
+        <div class="profile-card">
+            <p><span class="label">名前：</span>かきぴー</p>
+            <p><span class="label">学年：</span>3年</p>
+            <p><span class="label">所属：</span>工学部情報工学科</p>
+            <p><span class="label">ひとこと：</span>早起き得意です。</p>
+        </div>
+    </section>
+
+    <!-- 趣味・好きなことのセクション -->
+    <section id="hobby">
+        <h2>Hobby & Favorite</h2>
+
+        <div class="card-container">
+            <div class="card">
+                <h3>🍰 お菓子作り</h3>
+                <p>最近お菓子作りにハマっています。いろいろなお菓子を作るのが好きです。</p>
+            </div>
+
+            <div class="card">
+                <h3>🚶 歩くこと</h3>
+                <p>趣味は歩くことです。ゆっくり歩く時間を楽しんでいます。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- プログラミング経験のセクション -->
+    <section id="programming">
+        <h2>Programming</h2>
+
+        <div class="profile-card">
+            <p>これまでに触れたことのあるプログラミング言語：</p>
+            <ul>
+                <li>Java</li>
+                <li>Go</li>
+                <li>Haskell</li>
+            </ul>
+
+            <p style="margin-top: 15px;">
+                その中でも、Javaが一番慣れている言語です。
+            </p>
+        </div>
+    </section>
+
+    <!-- 授業で学びたいことのセクション -->
+    <section id="learning">
+        <h2>Learning</h2>
+
+        <div class="profile-card">
+            <p>
+                この授業では、オープンソフトウェアのおおまかな内容を学びたいです。
+            </p>
+        </div>
+    </section>
+
+    <!-- 最後のひとことを表示するセクション -->
+    <section>
+        <div class="message">
+            <p>早起き得意です ☀️</p>
+        </div>
+    </section>
+
+    <!-- ページ下部のフッター -->
     <footer>
-      拓殖大学工学部『オープンソースソフトウェア』2026年度<br>
-      <a href="https://github.com/tomohitoy/oss-practice-2026/blob/main-07/chap07/README.md">第7回の資料</a>
-      ・
-      <a href="https://github.com/tomohitoy/oss-template-2026">テンプレート（tomohitoy/oss-template-2026）</a>
+        <p>© かきぴー's Portfolio</p>
     </footer>
-  </main>
+
 </body>
 </html>
